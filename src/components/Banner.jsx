@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { banner, studio } from '../data/site'
 import { listPhotos } from '../lib/storage'
+import { localBanner } from '../lib/localPhotos'
 
 // Storage slots the admin page writes to.
 export const BANNER_DESKTOP = 'banner-desktop'
@@ -17,8 +18,9 @@ export default function Banner() {
 
   if (!banner.show) return null
 
-  const desktop = uploaded.desktop || banner.desktop
-  const mobile = uploaded.mobile || banner.mobile || desktop
+  // uploaded from /admin  >  src/photos/banner/  >  site.js
+  const desktop = uploaded.desktop || localBanner('desktop') || banner.desktop
+  const mobile = uploaded.mobile || localBanner('mobile') || banner.mobile || desktop
   const link = banner.ctaLink || studio.whatsapp
   if (!desktop && !mobile) return null
 

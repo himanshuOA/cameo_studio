@@ -59,6 +59,14 @@ export const categories = [
     images: [IMG.wedding, ph('wd2', 900, 700), ph('wd3'), ph('wd4'), ph('wd5', 900, 700)],
   },
   {
+    slug: 'post-wedding',
+    name: 'Post Wedding',
+    group: 'People',
+    blurb: 'The shoot after the shaadi, with no schedule to keep up with.',
+    cover: ph('cameo-postwedding'),
+    images: [ph('cameo-postwedding'), ph('pow2'), ph('pow3', 900, 700)],
+  },
+  {
     slug: 'maternity',
     name: 'Maternity',
     group: 'People',
@@ -91,6 +99,14 @@ export const categories = [
     images: [IMG.birthday, ph('bd2'), ph('bd3', 900, 900)],
   },
   {
+    slug: 'family-function',
+    name: 'Family Function',
+    group: 'Events',
+    blurb: 'Roka, engagement, anniversary, griha pravesh — the whole family in one frame.',
+    cover: ph('cameo-family', 900, 700),
+    images: [ph('cameo-family', 900, 700), ph('fam2'), ph('fam3')],
+  },
+  {
     slug: 'corporate',
     name: 'Corporate Event',
     group: 'Events',
@@ -121,6 +137,14 @@ export const categories = [
     blurb: 'Lookbooks and catalogues, on model or on ghost mannequin.',
     cover: IMG.clothing,
     images: [IMG.clothing, ph('cl2'), ph('cl3', 900, 900)],
+  },
+  {
+    slug: 'portfolio',
+    name: 'Portfolio Shoot',
+    group: 'Brands',
+    blurb: 'Headshots and full portfolios for models, actors and performers.',
+    cover: ph('cameo-portfolio'),
+    images: [ph('cameo-portfolio'), ph('pf2'), ph('pf3', 900, 900)],
   },
   {
     slug: 'interior',

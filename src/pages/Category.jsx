@@ -1,19 +1,31 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { Link, NavLink, useParams, Navigate } from 'react-router-dom'
 import { categories, studio } from '../data/site'
 import { useGallery } from '../lib/useGallery'
 import Lightbox from '../components/Lightbox'
 import Tilt from '../components/Tilt'
 
+// How many photos appear before the "Show more" button. A wedding
+// gallery can run past 100 photos; loading them all at once would
+// mean a slow first view for someone who only looks at the top ten.
+const PAGE = 24
+
 export default function Category() {
   const { slug } = useParams()
   const { category, photos, loading } = useGallery(slug)
   const [open, setOpen] = useState(-1)
+  const [shown, setShown] = useState(PAGE)
+
+  // Start fresh when moving to another category
+  useEffect(() => { setShown(PAGE) }, [slug])
 
   const move = useCallback((d) => setOpen((i) => (i + d + photos.length) % photos.length), [photos.length])
   const close = useCallback(() => setOpen(-1), [])
 
   if (!category) return <Navigate to="/portfolio" replace />
+
+  const visible = photos.slice(0, shown)
+  const remaining = photos.length - visible.length
 
   return (
     <>
@@ -36,15 +48,26 @@ export default function Category() {
             <a className="btn" style={{ marginTop: 20 }} href={studio.whatsapp} target="_blank" rel="noreferrer">Request samples</a>
           </div>
         ) : (
-          <div className="masonry">
-            {photos.map((p, i) => (
-              <Tilt as="figure" key={p.id} max={8} scale={1.02}>
-                <button onClick={() => setOpen(i)} aria-label={`Open photo ${i + 1}`}>
-                  <img src={p.src} alt="" loading="lazy" />
+          <>
+            <div className="masonry">
+              {visible.map((p, i) => (
+                <Tilt as="figure" key={p.id} max={8} scale={1.02}>
+                  <button onClick={() => setOpen(i)} aria-label={`Open photo ${i + 1} of ${photos.length}`}>
+                    <img src={p.src} alt="" loading="lazy" decoding="async" />
+                  </button>
+                </Tilt>
+              ))}
+            </div>
+
+            {remaining > 0 && (
+              <div className="gallery-more">
+                <button className="btn" onClick={() => setShown((n) => n + PAGE)}>
+                  Show {Math.min(PAGE, remaining)} more
                 </button>
-              </Tilt>
-            ))}
-          </div>
+                <p className="t-small">{visible.length} of {photos.length} photos</p>
+              </div>
+            )}
+          </>
         )}
       </div>
 

@@ -218,16 +218,37 @@ p { margin: 0; }
 @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
 
 /* ---------- Footer ---------- */
-.footer { background: var(--jasper-deep); color: var(--ivory); padding: 56px 0 28px; margin-top: clamp(40px, 8vh, 96px); }
-.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
-.footer h4 { font-size: 1.1rem; margin-bottom: 14px; }
-.footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.footer { background: var(--jasper-deep); color: var(--ivory); padding: 40px 0 18px; margin-top: clamp(32px, 6vh, 72px); font-size: .92rem; }
+.footer-grid { display: grid; grid-template-columns: minmax(240px, 1fr) 1.3fr; gap: clamp(28px, 5vw, 72px); }
+.footer h4 { font-size: .95rem; margin-bottom: 10px; opacity: .65; font-family: var(--body); font-weight: 600; letter-spacing: .02em; }
+.footer ul { list-style: none; margin: 0; padding: 0; }
 .footer a { opacity: .85; } .footer a:hover { opacity: 1; text-decoration: underline; text-underline-offset: .25em; }
-.footer p { opacity: .8; font-size: .95rem; max-width: 30em; }
-.footer-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(245,239,228,.18); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: .85rem; opacity: .7; }
-.footer .brand { color: var(--ivory); margin-bottom: 16px; }
-.footer .brand-mark { border-color: var(--ivory); } .footer .brand-mark::after { background: var(--ivory); }
-@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+.footer p { opacity: .8; max-width: 32em; line-height: 1.5; }
+.footer .brand { color: var(--ivory); margin-bottom: 10px; font-size: 1.1rem; }
+.footer .brand-mark { width: 24px; height: 32px; }
+.footer .brand-mark::after { background: var(--ivory); }
+.footer .brand-mark { border-color: var(--ivory); }
+
+.footer-studio { display: flex; flex-direction: column; gap: 6px; }
+.footer-contact { display: flex; gap: 16px; margin-top: 4px; opacity: 1; }
+.footer-contact a { font-weight: 600; opacity: .95; }
+
+/* The category list runs in columns so it stays short */
+.footer-cats { columns: 3; column-gap: 24px; }
+.footer-cats li { break-inside: avoid; padding: 3px 0; }
+@media (max-width: 1000px) { .footer-cats { columns: 2; } }
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-cats { columns: 2; }
+}
+
+.footer-bottom {
+  margin-top: 28px; padding-top: 16px; padding-right: 76px;
+  border-top: 1px solid rgba(245,239,228,.18);
+  display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap;
+  font-size: .85rem; opacity: .75;
+}
+.footer-social { display: flex; gap: 16px; }
 
 /* WhatsApp floating button */
 .wa {

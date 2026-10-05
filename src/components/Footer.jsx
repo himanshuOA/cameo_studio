@@ -6,33 +6,35 @@ export default function Footer() {
     <footer className="footer">
       <div className="wrap">
         <div className="footer-grid">
-          <div>
+          <div className="footer-studio">
             <div className="brand"><span className="brand-mark" aria-hidden="true" />{studio.name}</div>
             <p>{studio.address}</p>
-            <p style={{ marginTop: 12 }}>Serving {studio.serviceAreas.join(', ')}.</p>
+            <p>Serving {studio.serviceAreas.join(', ')}.</p>
+            <p className="footer-contact">
+              <a href={`tel:+${studio.phoneRaw}`}>{studio.phoneDisplay}</a>
+              <a href={studio.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+            </p>
           </div>
+
           <div>
             <h4>Portfolio</h4>
-            <ul>
+            {/* 14 categories in one column made the footer taller than a
+                phone screen, so the list runs in columns instead */}
+            <ul className="footer-cats">
               {categories.map((c) => (
                 <li key={c.slug}><Link to={`/portfolio/${c.slug}`}>{c.name}</Link></li>
               ))}
             </ul>
           </div>
-          <div>
-            <h4>Reach us</h4>
-            <ul>
-              <li><a href={`tel:+${studio.phoneRaw}`}>Call {studio.phoneDisplay}</a></li>
-              <li><a href={studio.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a></li>
-              <li><a href={studio.social.instagram} target="_blank" rel="noreferrer">Instagram</a></li>
-              <li><a href={studio.social.youtube} target="_blank" rel="noreferrer">YouTube</a></li>
-              <li><a href={studio.social.facebook} target="_blank" rel="noreferrer">Facebook</a></li>
-            </ul>
-          </div>
         </div>
+
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} {studio.name}</span>
-          <span>{studio.tagline}</span>
+          <span className="footer-social">
+            <a href={studio.social.instagram} target="_blank" rel="noreferrer">Instagram</a>
+            <a href={studio.social.youtube} target="_blank" rel="noreferrer">YouTube</a>
+            <a href={studio.social.facebook} target="_blank" rel="noreferrer">Facebook</a>
+          </span>
         </div>
       </div>
     </footer>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function Lightbox({ photos, index, onClose, onMove }) {
   useEffect(() => {
@@ -15,7 +16,12 @@ export default function Lightbox({ photos, index, onClose, onMove }) {
   const photo = photos[index]
   if (!photo) return null
 
-  return (
+  // Rendered straight into <body>. Inside the page it would sit under
+  // <main>, which carries a transform from the route animation, and a
+  // transformed ancestor makes position:fixed size itself to that
+  // ancestor instead of the viewport — on a long gallery the photo
+  // ends up centred thousands of pixels down the page.
+  return createPortal(
     <div className="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" onClick={onClose}>
       <img src={photo.src} alt={photo.name || ''} onClick={(e) => e.stopPropagation()} />
       <button className="lb-btn lb-close" aria-label="Close" onClick={onClose}>×</button>
@@ -26,6 +32,7 @@ export default function Lightbox({ photos, index, onClose, onMove }) {
         </>
       )}
       <span className="lb-count">{index + 1} / {photos.length}</span>
-    </div>
+    </div>,
+    document.body,
   )
 }

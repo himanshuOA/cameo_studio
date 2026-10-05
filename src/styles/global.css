@@ -448,7 +448,10 @@ p { margin: 0; }
 .masonry figure.tilt .tilt-inner { box-shadow: 0 18px 30px -18px rgba(47,69,88,.45); }
 
 /* ---------- 3D route transition ---------- */
-.route-3d { animation: pageIn .55s var(--ease) both; transform-origin: 50% 0; }
+/* `backwards`, not `both`: a filling animation leaves an identity
+   transform behind, and any transformed ancestor would trap
+   position:fixed children inside the page instead of the viewport. */
+.route-3d { animation: pageIn .55s var(--ease) backwards; transform-origin: 50% 0; }
 @keyframes pageIn {
   from { opacity: 0; transform: perspective(1400px) rotateX(9deg) translateY(28px) translateZ(-120px); }
   to   { opacity: 1; transform: none; }

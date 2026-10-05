@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { studio, categories } from '../data/site'
+import { localPhotos } from '../lib/localPhotos'
 
 export default function Footer() {
+  // The count comes from how many files sit in src/photos/<slug>/, so it
+  // stays right on its own as photos are added — nothing to update here.
+  const withCounts = categories.map((c) => ({ ...c, count: localPhotos(c.slug).length }))
+
   return (
     <footer className="footer">
       <div className="wrap">
@@ -20,12 +25,20 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4>Portfolio</h4>
+            <h4>
+              Portfolio
+              <Link className="footer-all" to="/portfolio">See all categories</Link>
+            </h4>
             {/* 14 categories in one column made the footer taller than a
                 phone screen, so the list runs in columns instead */}
             <ul className="footer-cats">
-              {categories.map((c) => (
-                <li key={c.slug}><Link to={`/portfolio/${c.slug}`}>{c.name}</Link></li>
+              {withCounts.map((c) => (
+                <li key={c.slug}>
+                  <Link to={`/portfolio/${c.slug}`}>
+                    {c.name}
+                    {c.count > 0 && <span className="footer-count">{c.count}</span>}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>

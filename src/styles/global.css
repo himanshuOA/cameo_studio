@@ -154,14 +154,14 @@ p { margin: 0; }
   transition: padding-left .3s var(--ease);
 }
 .svc-row:hover { padding-left: 8px; }
-.svc-thumb { width: 64px; height: 84px; border-radius: 50%; overflow: hidden; background: var(--shell); box-shadow: inset 0 0 0 3px var(--bone); transition: transform .35s var(--ease); }
+.svc-thumb { width: 72px; height: 72px; border-radius: 50%; overflow: hidden; background: var(--shell); box-shadow: inset 0 0 0 3px var(--bone); transition: transform .35s var(--ease); }
 .svc-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .svc-row:hover .svc-thumb { transform: scale(1.12) rotate(-4deg); }
 .svc-name { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.1; }
 .svc-blurb { color: var(--mute); margin-top: 4px; font-size: .95rem; max-width: 40em; }
 .svc-go { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); display: grid; place-items: center; transition: background .2s, color .2s; }
 .svc-row:hover .svc-go { background: var(--ink); color: var(--ivory); }
-@media (max-width: 600px) { .svc-row { grid-template-columns: 56px 1fr; } .svc-go { display: none; } .svc-thumb { width: 48px; height: 64px; } }
+@media (max-width: 600px) { .svc-row { grid-template-columns: 56px 1fr; } .svc-go { display: none; } .svc-thumb { width: 56px; height: 56px; } }
 
 /* ---------- Statement band (dark jasper) ---------- */
 .band { background: var(--jasper-deep); color: var(--ivory); }
@@ -236,7 +236,19 @@ p { margin: 0; }
 /* ---------- Footer ---------- */
 .footer { background: var(--jasper-deep); color: var(--ivory); padding: 40px 0 18px; margin-top: clamp(32px, 6vh, 72px); font-size: .92rem; }
 .footer-grid { display: grid; grid-template-columns: minmax(240px, 1fr) 1.3fr; gap: clamp(28px, 5vw, 72px); }
-.footer h4 { font-size: .95rem; margin-bottom: 10px; opacity: .65; font-family: var(--body); font-weight: 600; letter-spacing: .02em; }
+.footer h4 {
+  font-size: .95rem; margin-bottom: 10px; font-family: var(--body); font-weight: 600; letter-spacing: .02em;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  color: color-mix(in srgb, var(--ivory) 65%, transparent);
+}
+/* the whole-portfolio link, and the photo count beside each category */
+.footer-all { font-size: .82rem; font-weight: 600; color: var(--saffron); opacity: 1; }
+.footer-all:hover { color: var(--saffron); }
+.footer-count {
+  margin-left: 7px; font-size: .72rem; font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--ivory) 45%, transparent);
+}
+.footer-cats a:hover .footer-count { color: inherit; }
 .footer ul { list-style: none; margin: 0; padding: 0; }
 .footer a { opacity: .85; } .footer a:hover { opacity: 1; text-decoration: underline; text-underline-offset: .25em; }
 .footer p { opacity: .8; max-width: 32em; line-height: 1.5; }

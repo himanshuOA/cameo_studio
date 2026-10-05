@@ -17,8 +17,8 @@ export default function Nav() {
     <header className="nav">
       <div className="wrap nav-inner">
         <Link to="/" className="brand" aria-label={`${studio.name} home`}>
-          <span className="brand-mark" aria-hidden="true" />
-          {studio.name}
+          <span className="brand-name">The Cameo</span>
+          <span className="brand-sub">Studio</span>
         </Link>
 
         <nav aria-label="Main">

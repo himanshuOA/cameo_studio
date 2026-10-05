@@ -2,15 +2,26 @@
    The Cameo Studio — design tokens
    Palette: Wedgwood jasperware (the material cameos are carved in)
    ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------
+   The Cameo Studio — design tokens
+   Palette: Ivory & Saffron. Light warm paper, near-black type, one hot
+   accent. The photographs supply the colour; the chrome stays quiet.
+   ------------------------------------------------------------------ */
 :root {
-  --jasper: #5f7f9e;        /* dusty jasper blue — primary */
-  --jasper-deep: #2f4558;   /* dark jasper — footer, dark sections */
-  --ink: #1b2229;           /* text */
-  --ivory: #f5efe4;         /* page background (the relief) */
-  --bone: #fffdf8;          /* raised surfaces */
-  --shell: #e6dccb;         /* hairlines, dividers */
-  --gilt: #b8955a;          /* thin gold for the engraved ring only */
-  --mute: #6b6f74;
+  --saffron: #c25a24;       /* the one accent: buttons, links, marks */
+  --saffron-deep: #9e4419;  /* hover */
+  --ink: #15181c;           /* type, and the dark sections */
+  --ink-soft: #1f242a;      /* footer and the dark band */
+  --ivory: #fbf8f3;         /* page */
+  --bone: #ffffff;          /* raised surfaces */
+  --shell: #e6e0d6;         /* hairlines, dividers */
+  --sage: #7d8a6a;          /* a quiet second colour, used sparingly */
+  --mute: #5e646b;
+
+  /* kept so older rules keep working */
+  --jasper: var(--saffron);
+  --jasper-deep: var(--ink-soft);
+  --gilt: #b07a3c;
 
   --display: 'Fraunces', Georgia, 'Times New Roman', serif;
   --body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -59,9 +70,9 @@ p { margin: 0; }
 }
 .btn:hover { background: var(--ink); color: var(--ivory); }
 .btn-fill { background: var(--jasper); border-color: var(--jasper); color: #fff; }
-.btn-fill:hover { background: var(--jasper-deep); border-color: var(--jasper-deep); color: #fff; }
+.btn-fill:hover { background: var(--saffron-deep); border-color: var(--saffron-deep); color: #fff; }
 .btn-ghost { border-color: transparent; padding-inline: .4em; text-decoration: underline; text-underline-offset: .3em; text-decoration-color: var(--shell); }
-.btn-ghost:hover { background: none; color: var(--jasper-deep); text-decoration-color: currentColor; }
+.btn-ghost:hover { background: none; color: var(--saffron); text-decoration-color: currentColor; }
 
 /* ---------- Nav ---------- */
 .nav {
@@ -71,9 +82,14 @@ p { margin: 0; }
   border-bottom: 1px solid var(--shell);
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
-.brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: 1.25rem; letter-spacing: .01em; }
-.brand-mark { width: 30px; height: 40px; border: 1.5px solid var(--ink); border-radius: 50%; display: grid; place-items: center; }
-.brand-mark::after { content: ''; width: 10px; height: 13px; border-radius: 50%; background: var(--jasper); }
+/* Wordmark lockup: name over a letterspaced STUDIO, no picture mark.
+   The tab icon carries the oval seal instead — see public/favicon.svg */
+.brand { display: flex; flex-direction: column; gap: 1px; line-height: 1; }
+.brand-name { font-family: var(--display); font-size: 1.3rem; letter-spacing: .005em; }
+.brand-sub {
+  font-size: .58rem; font-weight: 600; letter-spacing: .34em;
+  text-transform: uppercase; color: var(--saffron); padding-left: .12em;
+}
 .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
 .nav-links a { font-size: .95rem; font-weight: 500; padding: 6px 0; border-bottom: 1.5px solid transparent; transition: border-color .2s; }
 .nav-links a:hover, .nav-links a.active { border-bottom-color: var(--ink); }
@@ -115,7 +131,7 @@ p { margin: 0; }
   position: absolute; inset: 7%;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--jasper);
+  background: var(--shell);
   box-shadow: inset 0 0 0 6px var(--bone), inset 0 0 0 7px var(--shell);
 }
 .cameo-frame img { width: 100%; height: 100%; object-fit: cover; }
@@ -131,14 +147,14 @@ p { margin: 0; }
 @media (max-width: 700px) { .section-head { flex-direction: column; align-items: start; } }
 
 .svc-group { margin-top: 40px; }
-.svc-group-name { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--jasper-deep); padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
+.svc-group-name { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--saffron); padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
 .svc-row {
   display: grid; grid-template-columns: 80px 1fr auto; gap: 24px; align-items: center;
   padding: 18px 0; border-bottom: 1px solid var(--shell);
   transition: padding-left .3s var(--ease);
 }
 .svc-row:hover { padding-left: 8px; }
-.svc-thumb { width: 64px; height: 84px; border-radius: 50%; overflow: hidden; background: var(--jasper); box-shadow: inset 0 0 0 3px var(--bone); transition: transform .35s var(--ease); }
+.svc-thumb { width: 64px; height: 84px; border-radius: 50%; overflow: hidden; background: var(--shell); box-shadow: inset 0 0 0 3px var(--bone); transition: transform .35s var(--ease); }
 .svc-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .svc-row:hover .svc-thumb { transform: scale(1.12) rotate(-4deg); }
 .svc-name { font-family: var(--display); font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.1; }
@@ -205,7 +221,7 @@ p { margin: 0; }
 .contact-list div { padding: 20px 0; border-bottom: 1px solid var(--shell); }
 .contact-list dt { font-size: .85rem; color: var(--mute); margin-bottom: 6px; }
 .contact-list dd { margin: 0; font-family: var(--display); font-size: 1.35rem; }
-.contact-list dd a:hover { color: var(--jasper-deep); }
+.contact-list dd a:hover { color: var(--saffron); }
 .form { display: flex; flex-direction: column; gap: 16px; }
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label { font-size: .9rem; font-weight: 500; }
@@ -224,10 +240,8 @@ p { margin: 0; }
 .footer ul { list-style: none; margin: 0; padding: 0; }
 .footer a { opacity: .85; } .footer a:hover { opacity: 1; text-decoration: underline; text-underline-offset: .25em; }
 .footer p { opacity: .8; max-width: 32em; line-height: 1.5; }
-.footer .brand { color: var(--ivory); margin-bottom: 10px; font-size: 1.1rem; }
-.footer .brand-mark { width: 24px; height: 32px; }
-.footer .brand-mark::after { background: var(--ivory); }
-.footer .brand-mark { border-color: var(--ivory); }
+.footer .brand { color: var(--ivory); margin-bottom: 10px; }
+.footer .brand-name { font-size: 1.15rem; }
 
 .footer-studio { display: flex; flex-direction: column; gap: 6px; }
 .footer-contact { display: flex; gap: 16px; margin-top: 4px; opacity: 1; }
@@ -307,7 +321,7 @@ p { margin: 0; }
 
 /* Service thumbnails: oval keeps its shape, lifts and tilts in depth */
 .svc-thumb.tilt { overflow: visible; background: none; box-shadow: none; }
-.svc-thumb.tilt .tilt-inner { border-radius: 50%; overflow: hidden; background: var(--jasper); box-shadow: inset 0 0 0 3px var(--bone), 0 10px 24px -12px rgba(27,34,41,.45); }
+.svc-thumb.tilt .tilt-inner { border-radius: 50%; overflow: hidden; background: var(--shell); box-shadow: inset 0 0 0 3px var(--bone), 0 10px 24px -12px rgba(27,34,41,.45); }
 .svc-thumb.tilt .tilt-inner img { width: 100%; height: 100%; object-fit: cover; }
 .svc-row:hover .svc-thumb.tilt { transform: none; }
 .svc-row:hover .svc-thumb.tilt .tilt-inner { box-shadow: inset 0 0 0 3px var(--bone), 0 22px 36px -14px rgba(27,34,41,.55); }
@@ -403,7 +417,7 @@ p { margin: 0; }
 @keyframes drop { 0%, 100% { transform: scaleY(.3); opacity: .4 } 50% { transform: scaleY(1); opacity: 1 } }
 
 /* ---------- The turning display case ---------- */
-.vitrine { padding-bottom: clamp(40px, 6vh, 72px); background: linear-gradient(180deg, var(--ivory), color-mix(in srgb, var(--jasper) 12%, var(--ivory)) 55%, var(--ivory)); }
+.vitrine { padding-bottom: clamp(40px, 6vh, 72px); background: linear-gradient(180deg, var(--ivory), color-mix(in srgb, var(--shell) 70%, var(--ivory)) 55%, var(--ivory)); }
 .carousel { margin-top: 8px; }
 .carousel-stage {
   position: relative; height: 400px;
@@ -429,7 +443,7 @@ p { margin: 0; }
 }
 .carousel-card {
   display: block; width: 100%; height: 100%; position: relative;
-  border-radius: 8px; overflow: hidden; background: var(--jasper);
+  border-radius: 8px; overflow: hidden; background: var(--shell);
   box-shadow: 0 30px 50px -24px rgba(27,34,41,.6), inset 0 0 0 1px rgba(255,255,255,.25);
   filter: brightness(.72) saturate(.75);
   transition: filter .5s var(--ease), box-shadow .5s var(--ease), transform .5s var(--ease);

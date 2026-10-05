@@ -7,7 +7,10 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer-grid">
           <div className="footer-studio">
-            <div className="brand"><span className="brand-mark" aria-hidden="true" />{studio.name}</div>
+            <div className="brand">
+              <span className="brand-name">The Cameo</span>
+              <span className="brand-sub">Studio</span>
+            </div>
             <p>{studio.address}</p>
             <p>Serving {studio.serviceAreas.join(', ')}.</p>
             <p className="footer-contact">

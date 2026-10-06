@@ -42,8 +42,8 @@ export default function Home() {
               <Link className="btn" to="/portfolio">See the work</Link>
             </div>
             <div className="hero-meta">
-              <div><strong>11</strong><span className="t-small">kinds of shoots</span></div>
-              <div><strong>6</strong><span className="t-small">cities across NCR</span></div>
+              <div><strong>{categories.length}</strong><span className="t-small">kinds of shoots</span></div>
+              <div><strong>{studio.serviceAreas.length}</strong><span className="t-small">cities across NCR</span></div>
               <div><strong>2 wks</strong><span className="t-small">to delivery</span></div>
             </div>
           </div>

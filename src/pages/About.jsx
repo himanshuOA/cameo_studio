@@ -21,7 +21,7 @@ export default function About() {
             Let&rsquo;s create something beautiful
           </a>
         </div>
-        <Cameo src={coverOf(c)} alt="" ringText="Elegance, creativity, authenticity \u2022 " />
+        <Cameo src={coverOf(c)} alt="" ringText="Elegance, creativity, authenticity • " />
       </section>
     </>
   )

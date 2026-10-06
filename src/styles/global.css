@@ -126,7 +126,10 @@ p { margin: 0; }
 @media (max-width: 899px) { .hero-grid { grid-template-columns: 1fr; } .hero-copy { order: 2; } }
 
 /* The cameo: the one bold element on the site */
-.cameo { position: relative; aspect-ratio: 4 / 5; max-width: 560px; margin-inline: auto; }
+/* width:100% is load-bearing: every child is absolutely positioned, so
+   without it the auto margins make this a shrink-to-fit box with no
+   content, and the whole cameo collapses to zero. */
+.cameo { position: relative; width: 100%; aspect-ratio: 4 / 5; max-width: 560px; margin-inline: auto; }
 .cameo-frame {
   position: absolute; inset: 7%;
   border-radius: 50%;
